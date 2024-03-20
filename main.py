@@ -50,3 +50,12 @@ async def delete_book(ISBN: str):
             return {"message": "Book deleted successfully"}
     raise HTTPException(status_code=404, detail="Book not found")
 
+
+@app.get("/books/{ISBN}/ratings", response_model=List[UserBookRating])
+async def get_book_ratings(ISBN: str):
+    return [rating for rating in ratings_db if rating.ISBN == ISBN]
+
+@app.post("/books/{ISBN}/ratings", response_model=UserBookRating)
+async def rate_book(ISBN: str, rating: UserBookRating):
+    ratings_db.append(rating)
+    return rating
