@@ -1,6 +1,7 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from typing import List, Optional
 from models.books import Book, UserBookRating
+from utils.token_manager import validate_api_key
 
 book_router = APIRouter()
 
@@ -27,12 +28,12 @@ async def get_book_by_isbn(ISBN: str):
     raise HTTPException(status_code=404, detail="Book not found")
 
 @book_router.post("/books", response_model=Book)
-async def create_book(book: Book):
+async def create_book(book: Book, api_key: str = Depends(validate_api_key)):
     books_db.append(book)
     return book
 
 @book_router.put("/books/{ISBN}", response_model=Book)
-async def update_book(ISBN: str, book: Book):
+async def update_book(ISBN: str, book: Book, api_key: str = Depends(validate_api_key)):
     for i, book in enumerate(books_db):
         if book.ISBN == ISBN:
             books_db[i] = book
@@ -40,7 +41,7 @@ async def update_book(ISBN: str, book: Book):
     raise HTTPException(status_code=404, detail="Book not found")
 
 @book_router.delete("/books/{ISBN}")
-async def delete_book(ISBN: str):
+async def delete_book(ISBN: str, api_key: str = Depends(validate_api_key)):
     for i, book in enumerate(books_db):
         if book.ISBN == ISBN:
             del books_db[i]
@@ -53,6 +54,6 @@ async def get_book_ratings(ISBN: str):
     return [rating for rating in ratings_db if rating.ISBN == ISBN]
 
 @book_router.post("/books/{ISBN}/ratings", response_model=UserBookRating)
-async def rate_book(ISBN: str, rating: UserBookRating):
+async def rate_book(ISBN: str, rating: UserBookRating, api_key: str = Depends(validate_api_key)):
     ratings_db.append(rating)
     return rating
