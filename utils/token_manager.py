@@ -1,4 +1,3 @@
-from jwt import encode, decode
 from dotenv import load_dotenv
 import os
 import secrets
@@ -14,7 +13,6 @@ def login(username, password):
 def create_api_key():
     api_key = secrets.token_urlsafe(32)
 
-    # Save the api_key to the .env file
     with open(".env", "a") as f:
         f.write(f"\nAPI_KEY={api_key}")
 
