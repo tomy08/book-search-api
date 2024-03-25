@@ -261,5 +261,6 @@ $RECYCLE.BIN/
 
 /csvs
 *.sqlite
+*.sqlite3
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,python,venv

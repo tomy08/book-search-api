@@ -1,6 +1,3 @@
-Certainly! Here's the README.md in Markdown format:
-
-````markdown
 # FastAPI Book API
 
 This is an API developed with FastAPI to manage a collection of books. It allows performing CRUD (Create, Read, Update, Delete) operations on the books.
@@ -12,6 +9,7 @@ This is an API developed with FastAPI to manage a collection of books. It allows
 ```sh
 git clone https://github.com/tomy08/book-search-api
 ```
+
 ````
 
 2. Navigate to the project directory:
@@ -66,3 +64,4 @@ uvicorn main:app --reload
 - `GET /books/{ISBN}/ratings/`: Get all ratings for a book by its ISBN.
 - `POST /books/{ISBN}/ratings/`: Add a new rating for a book by its ISBN.
 - `POST /login/`: Log in and get an authentication token.
+````
