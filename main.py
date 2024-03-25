@@ -3,7 +3,7 @@ from fastapi.responses import RedirectResponse
 
 from routers.books import book_router
 from routers.user import user_router
-from db.database import SessionLocal, create_database
+from db.database import create_database
 from services.crud import get_books
 
 
