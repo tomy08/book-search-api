@@ -28,6 +28,8 @@ def get_book_by_isbn(db: Session, ISBN: str):
 
 def create_book(db: Session, book: BookModel):
     try:
+        if db.query(BookModel).filter(BookModel.ISBN == book.ISBN).first():
+            raise HTTPException(status_code=400, detail="Book already exists")
         db.add(book)
         db.commit()
         db.refresh(book)

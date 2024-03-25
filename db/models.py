@@ -8,7 +8,7 @@ metadata = MetaData()
 
 class Book(Base):
     __tablename__ = 'books'
-    ISBN = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    ISBN = Column(String, primary_key=True)
     Book_Title = Column(String)
     Book_Author = Column(String)
     Year_Of_Publication = Column(Integer)
