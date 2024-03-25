@@ -62,7 +62,3 @@ uvicorn main:app --reload
 - `GET /books/{ISBN}/ratings/`: Get all ratings for a book by its ISBN.
 - `POST /books/{ISBN}/ratings/`: Add a new rating for a book by its ISBN.
 - `POST /login/`: Log in and get an authentication token.
-
-```
-
-```
